@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+/* eslint-disable */ 
+// warning 메세지 다 지우는 기능
+
 function App() {
   
   // 자료를 잠깐 보관할때에 사용하는 state
@@ -9,7 +12,8 @@ function App() {
   // 2.useState(보관할 자료)
   // 3. let[작명,작명]
 
-  let [a,b] = useState(['역삼 대방어 맛집','리액트 독학','JSX'])
+  let [a,글제목변경] = useState(['역삼 대방어 맛집','리액트 독학','JSX'])
+  // array 로 저장해놓고 index 번호로 사용가능
 
   // a -> state 에 보관했던 자료
   // b -> state 변경 도와주는 함수
@@ -32,6 +36,12 @@ function App() {
 
   // 서버에서 가져온 블로그 제목
   // 원래라면 document.querySelector('h4').innerHTML = post;
+
+  let [좋아요갯수 ,좋아요갯수변경]=useState(0);
+
+
+  // 좋아요 갯수 세는 함수
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -41,7 +51,12 @@ function App() {
       </div>
         {/* 글목록 ui 만들기 */}
         <div className="list">
-          <h4>{a[0]}</h4>
+          {/* 좋아요 버튼 구현 */}
+          <h4>{a[0]} <span onClick={ ()=>{좋아요갯수변경(좋아요갯수+1)}}>❤️‍🔥</span> {좋아요갯수} </h4>
+          {/* 온클릭 핸들러 onClick={} 안에는 함수 이름을 넣어야 함 */}
+          <button onClick={ ()=>{
+            글제목변경(['여자코트 추천','ㅇㅇ','ㄴㄴ'])}}>글수정</button>
+            {/* 버튼을 눌렀을때에 변경함수인 "글제목변경"이 실행됨 */}
           <p>11월 16일 발행</p>
         </div>
         <div className="list">
