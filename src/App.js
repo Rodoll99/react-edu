@@ -50,13 +50,35 @@ function App() {
         {/* style 넣을땐 style={{이름 :'값'}} */}
       </div>
         {/* 글목록 ui 만들기 */}
+
         <div className="list">
           {/* 좋아요 버튼 구현 */}
           <h4>{a[0]} <span onClick={ ()=>{좋아요갯수변경(좋아요갯수+1)}}>❤️‍🔥</span> {좋아요갯수} </h4>
           {/* 온클릭 핸들러 onClick={} 안에는 함수 이름을 넣어야 함 */}
+
+          {/* 숙제 : 버튼을 눌렀을때에 첫번째 글의 제목이 "여자 코트 추천" 으로 바뀌도록 만들기 */}
           <button onClick={ ()=>{
-            글제목변경(['여자코트 추천','ㅇㅇ','ㄴㄴ'])}}>글수정</button>
+            
+            let copy = [...a];
+            // copy 문법 a라는 배열을 카피
+            // [...변수명]괄호를 벗기고 다시 씌우는 문법
+            // 기존 state 가 array/object 면 shellow copy 를 이용 해야함
+            copy[0] = '여자 코트 추천';
+            글제목변경(copy);
+
+            //array/object 특징
+            let arr =[1,2,3];
+            // -> 123 이라는 배열을 어딘가에 저장을 해놓은것임 ( arr 이라는 변수에 저장한게 아님 )
+
+            }}>글수정</button>
             {/* 버튼을 눌렀을때에 변경함수인 "글제목변경"이 실행됨 */}
+
+            <button onClick={ ()=>{
+              let[글정렬,글정렬변경]=useState();
+              let copy1=[...a];
+            }}>
+              글 정렬
+            </button>
           <p>11월 16일 발행</p>
         </div>
         <div className="list">
