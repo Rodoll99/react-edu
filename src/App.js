@@ -74,8 +74,13 @@ function App() {
             {/* 버튼을 눌렀을때에 변경함수인 "글제목변경"이 실행됨 */}
 
             <button onClick={ ()=>{
-              let[글정렬,글정렬변경]=useState();
+          
               let copy1=[...a];
+              // spread 연산자를 사용해 배열 'a' 를 얕게 복사
+              copy1 = copy1.sort();
+              // 복사한 배열을 sort 메서드를 이용해 정렬
+              글제목변경(copy1);
+              // 정렬된 배열을 '글제목변경' 함수를 통해 react 의 state로 업데이트
             }}>
               글 정렬
             </button>
@@ -89,12 +94,53 @@ function App() {
         <div className="list">
           <h4>{a[2]}</h4>
           <p>11월 16일 발행</p>
+          {/* 상세페이지 만들기 */}
         </div>
-       
+            {/* <div className='modal'>
+              <h4>제목</h4>
+              <p>날짜</p>
+              <p>상세 내용</p>
+            </div> 이걸 컴포넌트를 이용해 <Modal> 이라는 태그로 만들기*/}
+          <Modal>
+          </Modal>
+    
+           <Comment>
+
+           </Comment>
+          {/* 컴포넌트로 어떤걸 만들어야 하는지?
+              1. 반복적인 html 축약할 때
+              2. 큰 페이지 만들 때
+              3. 자주 변경되는 것들
+
+              컴포넌트의 단점
+              1. state를 가져다 쓸 때에 문제가 발생할 수 있음
+              ex) app 함수에 있던 변수는 Modal함수에서 가져다 쓸 수 없음
+          */}
+
         {/* <h4>{ post }</h4>  */}
         {/* jsx 문법 2 변수 넣을땐 중괄호 -> 데이터바인딩 */}
     </div>
   );
+}
+function Modal(){
+  // 컴포넌트를 만들때에는 function app 바깥에 함수를 만들어줌
+  return (
+    <div className='modal'>
+    <h4>제목</h4>
+    <p>날짜</p>
+    <p>상세 내용</p>
+  </div>
+  // 원하는 html을 return 안에 넣어주면 컴포넌트 생성 완료
+  // <> </> 도 문법상 사용 가능(쓸데없는 div를 만들지않기 위해)
+  )
+}
+function Comment(){
+  return(
+    <div className='comment'>
+      <h4>닉네임</h4>
+      <p>블로그 잘 봤습니다.다음부턴 유료결제네요</p>
+    </div>
+  )
 }
 
 export default App;
